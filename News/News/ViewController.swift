@@ -15,8 +15,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        newsManager.fetchHeadLines()
-        
+        newsManager.fetchHeadLines(countryID: .estadosUnidos,
+                                   succes: { (news) in
+                                    print("Bloque succes :\n")
+                                    print(news.articles.last?.title)
+                                   })
+//        newsManager.fetchHeadLines(countryID: .argentina)
+//        newsManager.fetchHeadLines(countryID: .reinoUnido)
+//        
     }
     
 

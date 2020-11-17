@@ -16,12 +16,17 @@ import Foundation
 enum Endpoints: String {
     case topHeadLines = "https://newsapi.org/v2/top-headlines"
     
-    var url : String {
-        return self.rawValue
-    }
+    var url : String { return self.rawValue}
+    
 }
     
-        
+enum EndpointParameter : String {
+    case  country, apiKey, sources, page
+    case query = "q"
+
+}
+
+
 
 
 
