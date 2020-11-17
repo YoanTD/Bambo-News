@@ -6,48 +6,79 @@
 //
 
 import UIKit
-import  Alamofire
+
 
 class ViewController: UIViewController {
     
+    let newsManager = NewsManager()
+    var articles: [Article]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUsersBy()
-        
-        
-    }
-    func fetchUsersBy() {
-        
-        
-        let parameters = ["country": "us" , "apiKey": "ad744c6e7c234011ad5decae4f173e16"]
-        AF.request(Endpoints.topHeadLines.url, parameters : parameters)
-            .validate()
-            .responseDecodable(of: ArticleList.self) { (response) in
-                guard let articleList : ArticleList = response.value else {
-                    print(String(describing: response.error))
-                    return
-                }
-                print(articleList.totalResults)
-                
-                
-                for articulo in articleList.articles {
-                    let articleDescrip : String = "## \(articulo.author) in \(articulo.title)\n\n"
-                print(articleDescrip)
-                    
-                }
-                
-                
-            }
-        
+        newsManager.fetchHeadLines()
         
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    func fetchUserBy () {
+//
+//        let parameters = ["country": "us" , "apiKey": "ad744c6e7c234011ad5decae4f173e16"]
+//        AF.request(Endpoints.topHeadLines.url, parameters: parameters)
+//            .validate()
+//            .responseDecodable(of: ArticleList.self) { (response) in
+//                guard let articleList : ArticleList = response.value else {
+//                    return
+//
+//                }
+//
+//                print(articleList.totalResults)
+//
+//                for articulo in articleList.articles {
+//                    let articleDescrip : String = " ## \(articulo.author) in \(articulo.title)\n\n"
+//                    print(articleDescrip)
+//                }
+//
+//            }
+//
+//    }
+//}
+
+
 }
 
 
-//for user in userList.users {
-//    let userDescription: String = "## \(user.name) lives in \(user.city)\n\n"
-//    self.textLab.text.append(userDescription)
 
 
 
-// Ultima version subida al sustri para luego modificar.
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08120DB72563CA0A008F555E /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08120DB62563CA0A008F555E /* NewsManager.swift */; };
 		08E4A1182562938C00ABEC69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4A1172562938C00ABEC69 /* AppDelegate.swift */; };
 		08E4A11A2562938C00ABEC69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4A1192562938C00ABEC69 /* SceneDelegate.swift */; };
 		08E4A11C2562938C00ABEC69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4A11B2562938C00ABEC69 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08120DB62563CA0A008F555E /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		08E4A1142562938C00ABEC69 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4A1172562938C00ABEC69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4A1192562938C00ABEC69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		08E4A134256299F900ABEC69 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				08120DB62563CA0A008F555E /* NewsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				08E4A13E25629E8900ABEC69 /* ArticleSource.swift in Sources */,
 				08E4A1182562938C00ABEC69 /* AppDelegate.swift in Sources */,
 				08E4A1412562B3B100ABEC69 /* Endpoints.swift in Sources */,
+				08120DB72563CA0A008F555E /* NewsManager.swift in Sources */,
 				08E4A11A2562938C00ABEC69 /* SceneDelegate.swift in Sources */,
 				08E4A13725629A4400ABEC69 /* ArtricleList.swift in Sources */,
 				08E4A13B25629BF800ABEC69 /* Article.swift in Sources */,
