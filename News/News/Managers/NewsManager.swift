@@ -10,13 +10,13 @@ import Alamofire
 
 
 struct NewsManager {
-     let apiKeyValue: String = "ad744c6e7c234011ad5decae4f173e16"
+    let apiKeyValue: String = "cdcf259d1708429f862232d9c91389f4"
     
     
     
     func fetchHeadLines (countryID : CountryTryp,
                          succes : @escaping (ArticleList)-> () ) {
-//                         failure: @escaping (APIError)-> ()) {
+        //                         failure: @escaping (APIError)-> ()) {
         
         let parameters = [
             EndpointParameter.country.rawValue : countryID.rawValue,
@@ -28,13 +28,13 @@ struct NewsManager {
             .responseDecodable(of: ArticleList.self) { (response) in
                 
                 guard let articleList : ArticleList = response.value else {
-//                    let error: APIError = self.apiError(from: response)
-//                    failure(error)
+                    //                    let error: APIError = self.apiError(from: response)
+                    //                    failure(error)
                     return
                 }
                 
                 
-            print(articleList.totalResults)
+                print(articleList.totalResults)
                 
                 
                 for articulo in articleList.articles {
@@ -43,6 +43,36 @@ struct NewsManager {
                     succes(articleList)
                 }
             }
+    }
+    
+    func fetchEverything(query: String,
+                         success: @escaping (ArticleList)-> () ) {
+        
+        let parameters = [
+            EndpointParameter.query.rawValue : query,
+            EndpointParameter.apiKey.rawValue : apiKeyValue
+        ]
+        AF.request(Endpoints.everything.url, parameters: parameters)
+            .validate()
+            .responseDecodable(of:ArticleList.self) { (response) in
+                guard let bitcoinList : ArticleList = response.value else {
+                    
+                    return
+                }
+                success(bitcoinList)
+                print(bitcoinList.totalResults)
+                
+                
+                for btc in  bitcoinList.articles {
+                    let btcDescrip : String = " ## \(btc.author) in \(btc.title)\n\n"
+                    print(btcDescrip)
+                    success(bitcoinList)
+                }
+            }
+        
+        
+        
+        
     }
 }
 

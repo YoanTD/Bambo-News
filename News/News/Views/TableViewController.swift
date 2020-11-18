@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 class TableViewController: UITableViewController {
     
@@ -16,7 +17,9 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchHeadLines()
+//        fetchHeadLines()
+        fetchEverything()
+//        self.title = NewsViewModel.selectedArticle?.title
     
     
     }
@@ -26,12 +29,19 @@ class TableViewController: UITableViewController {
                                     self.articles = news.articles
                                     self.tableView.reloadData()
     })
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    private func fetchEverything() {
+        newsManager.fetchEverything(query: "Bitcoin",
+                                    success: { (news) in
+                                        self.articles = news.articles
+                                        self.tableView.reloadData()
+    })
+    }
+    
+    
+    
+    
 
     // MARK: - Table view data source
 
@@ -52,16 +62,26 @@ class TableViewController: UITableViewController {
            let article: Article = articles?[indexPath.row] {
             newsCell.labelOut.text = article.title
             
+            
+            if let urlToImage = article.urlToImage,
+               let url = URL(string: urlToImage) {
+            newsCell.imageCell.af.setImage(withURL: url)
+        
+            
         }
-
+        }
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        NewsViewModel.selectedArticle = articles?[indexPath.row]
+        performSegue(withIdentifier: "goToDetail", sender: nil)
+        
         
     }
-        
+
+    
         
     /*
     // Override to support conditional editing of the table view.
@@ -100,6 +120,8 @@ class TableViewController: UITableViewController {
 
     /*
     // MARK: - Navigation
+     
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,5 +129,5 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+  
 }
