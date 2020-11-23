@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 
 
+
+
 struct NewsManager {
     let apiKeyValue: String = "cdcf259d1708429f862232d9c91389f4"
     
@@ -69,10 +71,36 @@ struct NewsManager {
                     success(bitcoinList)
                 }
             }
+    }
+    
+    func fetchSources(success: @escaping (SourcesList)-> () ) {
         
-        
-        
-        
+        let parameters = [
+            EndpointParameter.apiKey.rawValue : apiKeyValue]
+        AF.request(Endpoints.sources.url , parameters: parameters)
+            .validate()
+            .responseDecodable(of: SourcesList.self) { (response) in
+                guard let succesListFull : SourcesList = response.value else {
+                    return
+                }
+                success(succesListFull)
+                
+            }
+    }
+    
+    func fetchMovies(succes : @escaping (MoviesList)-> () ) {
+        AF.request(Endpoints.movies.url)
+            .validate()
+            .responseDecodable(of: MoviesList.self) { (response) in
+                guard let succesMovies: MoviesList = response.value else {
+                    return
+                }
+                print("##### he llegado")
+                succes(succesMovies)
+            }
     }
 }
+
+
+
 

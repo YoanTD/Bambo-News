@@ -23,31 +23,6 @@ class ViewController: UIViewController {
 //        newsManager.fetchHeadLines(countryID: .argentina)
 //        newsManager.fetchHeadLines(countryID: .reinoUnido)
 //        
-    }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //    func fetchUserBy () {
 //
 //        let parameters = ["country": "us" , "apiKey": "ad744c6e7c234011ad5decae4f173e16"]
@@ -73,7 +48,7 @@ class ViewController: UIViewController {
 
 
 }
-
+}
 
 
 

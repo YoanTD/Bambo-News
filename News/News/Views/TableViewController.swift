@@ -17,12 +17,31 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        fetchHeadLines()
+        fetchSources()
+        fetchHeadLines()
         fetchEverything(query: "_")
+        fetchMovies()
         //        self.title = NewsViewModel.selectedArticle?.title
         
         
+        
+        
     }
+    
+    private func fetchSources() {
+        newsManager.fetchSources(success: { (sources) in
+        print("###SOURCES:\n")
+            print(sources)
+            debugPrint(sources)
+        })
+        
+        
+        
+        
+        
+        
+    }
+    
     private func fetchHeadLines() {
         newsManager.fetchHeadLines(countryID: .estadosUnidos,
                                    succes: { (news) in
@@ -31,12 +50,18 @@ class TableViewController: UITableViewController {
                                    })
     }
     
-    private func fetchEverything(query: String) {
-        newsManager.fetchEverything(query: "Bitcoin",
+    private func fetchEverything(query: String?) {
+        newsManager.fetchEverything(query: query ?? "",
                                     success: { (news) in
                                         self.articles = news.articles
                                         self.tableView.reloadData()
                                     })
+    }
+    private func fetchMovies() {
+        newsManager.fetchMovies(succes: { (movies) in
+            print("###Movies")
+            print(movies)
+        })
     }
     
     
@@ -136,12 +161,15 @@ class TableViewController: UITableViewController {
 extension TableViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("Texto buscado : \(textField.text)")
-//        newsManager.fetchEverything(query: "bitcoin", success : { (news) in self.articles = news.articles
-//            self.tableView.reloadData()
+        newsManager.fetchEverything(query: "bitcoin", success : { (news) in self.articles = news.articles
+            self.tableView.reloadData()
+            self.fetchEverything(query: textField.text ?? "")
         
+            textField.resignFirstResponder()
+            
         print("hola")
-        return true
         
-    }
-    
+    })
+    return true
+}
 }
